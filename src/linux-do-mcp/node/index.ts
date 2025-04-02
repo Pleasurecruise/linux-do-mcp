@@ -120,24 +120,6 @@ const LATEST_TOPIC_TOOL: Tool = {
     }
   };
 
-const NEWEST_TOPIC_TOOL: Tool = {
-    name: "newest_topic",
-    description: "获取Linux.do最近几天创建的话题",
-    inputSchema: {
-      type: "object",
-      properties: {
-        page: {
-          type: "number",
-          description: "页码，默认为1"
-        },
-        per_page: {
-          type: "number",
-          description: "每页条数，默认为10"
-        }
-      }
-    }
-  };
-
 const TOP_TOPIC_TOOL: Tool = {
     name: "top_topic", 
     description: "获取Linux.do过去一年一月一周一天中最活跃的话题",
@@ -210,7 +192,6 @@ const FETCH_AGAIN_TOOL: Tool = {
 
 const LINUX_DO_TOPIC_TOOLS = [
     LATEST_TOPIC_TOOL,
-    NEWEST_TOPIC_TOOL,
     TOP_TOPIC_TOOL,
     HOT_TOPIC_TOOL,
     FETCH_AGAIN_TOOL
@@ -251,20 +232,6 @@ async function handleLatest(params: { page?: number; per_page?: number }) {
     return formatTopicResponse(data);
   }
   
-async function handleNewest(params: { page?: number; per_page?: number }) {
-    const url = new URL("https://linux.do/new.json");
-    url.searchParams.append("page", (params.page || 1).toString());
-    url.searchParams.append("per_page", (params.per_page || 10).toString());
-  
-    const response = await fetch(url.toString());
-    if (!response.ok) {
-      throw new Error(`Error fetching newest topics: ${response.statusText}`);
-    }
-  
-    const data = await response.json() as LinuxDoTopicResponse;
-    return formatTopicResponse(data);
-  }
-  
 async function handleTop(params: { period: string; page?: number; per_page?: number }) {
     const url = new URL(`https://linux.do/top/${params.period}.json`);
     url.searchParams.append("page", (params.page || 1).toString());
@@ -297,8 +264,6 @@ async function handleFetch(params: { tool: string; params: any }) {
     switch (params.tool) {
       case "latest_topic":
         return handleLatest(params.params);
-      case "newest_topic":
-        return handleNewest(params.params);
       case "top_topic":
         return handleTop(params.params);
       case "hot_topic":
@@ -312,7 +277,7 @@ async function handleFetch(params: { tool: string; params: any }) {
 const server = new Server(
   {
     name: "pleasure1234/linux-do-mcp",
-    version: "1.0.2",
+    version: "1.0.3",
   },
   {
     capabilities: {
@@ -335,14 +300,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             per_page?: number;
           };
           return await handleLatest({ page, per_page });
-        }
-  
-        case "newest_topic": {
-          const { page, per_page } = request.params.arguments as {
-            page?: number;
-            per_page?: number;
-          };
-          return await handleNewest({ page, per_page });
         }
   
         case "top_topic": {

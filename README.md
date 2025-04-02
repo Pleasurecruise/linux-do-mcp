@@ -6,38 +6,44 @@ Where possible begin!
 
 Topics with new posts: https://linux.do/latest.json
 
-Topics created in recent days: https://linux.do/new.json
-
 The most active topics in the past year, month, week, or day: https://linux.do/top.json
 
 Recent hot topics: https://linux.do/hot.json
 
-#### Needs Authorization
+#### Needs Authorization (Help Wanted)
 
-https://linux.do/unread.json
+Topics created in recent days: https://linux.do/new.json
 
-https://linux.do/unseen.json
+You are currently following or tracking topics with unread posts: https://linux.do/unread.json
 
-https://linux.do/posted.json
+New topics and topics you are currently following or tracking with unread posts: https://linux.do/unseen.json
+
+Topic you posted: https://linux.do/posted.json
 
 ### How to install
+
+⚠️ **Attention**:
+
+Since it is temporarily unknown whether there is a user-authenticated API key, this space is reserved in advance. 
+
+When configuring environment variables, fill in any value but do not omit it.
 
 #### Node
 
 ```json
 {
-    "mcpServers": {
-        "baidu-map": {
-            "command": "npx",
-            "args": [
-                "-y",
-                "@pleasure1234/linux-do-mcp"
-            ],
-            "env": {
-                
-            }
-        }
+  "mcpServers": {
+    "linux-do": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@pleasure1234/linux-do-mcp"
+      ],
+      "env": {
+        "LINUX_DO_API_KEY": "your-api-key-here"
+      }
     }
+  }
 }
 ```
 
