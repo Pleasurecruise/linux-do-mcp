@@ -44,11 +44,11 @@ interface LinuxDoCategoryResponse {
         user_id: number;
       }>;
     }>;
-    users: Array<{
-      id: number;
-      name: string;
-    }>;
   };
+  users: Array<{
+    id: number;
+    name: string;
+  }>;
 }
 
 function getApiKey(): string {
@@ -234,7 +234,7 @@ function formatCategoryTopicResponse(data: LinuxDoCategoryResponse, categoryId: 
           title: topic.title,
           created_at: topic.created_at,
           url: `https://linux.do/t/${topic.id}`,
-          poster: data.topic_list.users?.find(user =>
+          poster: data.users.find(user =>
             user.id === topic.posters[0]?.user_id
           )?.name || '某位佬友'
         }))
@@ -319,7 +319,7 @@ async function handleCategory(params: { category: keyof typeof CATEGORY_MAP; pag
 const server = new Server(
   {
     name: "pleasure1234/linux-do-mcp",
-    version: "1.0.5",
+    version: "1.0.6",
   },
   {
     capabilities: {
