@@ -1,0 +1,45 @@
+{
+    "name": "@pleasure1234/linux-do-mcp",
+    "version": "1.0.0",
+    "description": "MCP server for accessing the Linux Do through API",
+    "license": "MIT",
+    "author": "Pleasure1234",
+    "type": "module",
+    "bin": {
+      "linux-do-mcp": "dist/index.js"
+    },
+    "files": [
+      "dist"
+    ],
+    "scripts": {
+      "build": "tsc && shx chmod +x dist/*.js",
+      "prepare": "npm run build",
+      "watch": "tsc --watch"
+    },
+    "dependencies": {
+      "@modelcontextprotocol/sdk": "1.0.1",
+      "@types/node-fetch": "^2.6.12",
+      "node-fetch": "^3.3.2"
+    },
+    "devDependencies": {
+      "shx": "^0.3.4",
+      "typescript": "^5.6.2"
+    },
+    "keywords": [
+      "linux.do",
+      "mcp",
+      "api",
+      "cli"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Pleasurecruise/linux-do-mcp.git"
+    },
+    "bugs": {
+      "url": "https://github.com/Pleasurecruise/linux-do-mcp/issues"
+    },
+    "homepage": "https://github.com/Pleasurecruise/linux-do-mcp#readme",
+    "publishConfig": {
+      "access": "public"
+    }
+  }
