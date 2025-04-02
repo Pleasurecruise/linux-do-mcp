@@ -1,5 +1,7 @@
 ## Linux Do MCP Server
 
+[中文](README_zh.md) / English
+
 Where possible begin!
 
 ### API list
@@ -19,6 +21,23 @@ You are currently following or tracking topics with unread posts: https://linux.
 New topics and topics you are currently following or tracking with unread posts: https://linux.do/unseen.json
 
 Topic you posted: https://linux.do/posted.json
+
+### Category List
+
+| Category Name | Description                                                                 | Id |
+|---------------|-----------------------------------------------------------------------------|-------|
+| Development   | Includes content on development, testing, debugging, deployment, optimization, security, etc. | 4     |
+| Resources     | Shares software, open-source repositories, video courses, books, etc.      | 14    |
+| Documentation | Friends become academicians, let's compile books together                  | 42    |
+| Flea Market   | Trading-related section, including physical/virtual goods supply/demand, carpooling, etc. | 10    |
+| Job Market    | "Master skills to serve the emperor." Dedicated to job postings/hunting only. | 27    |
+| Book Club     | What's it like to finish a book with forum friends?                        | 32    |
+| Set Sail      | Set sail with the stars as our destination!                                | 46    |
+| News Flash    | Stay informed about the world without leaving home.                        | 34    |
+| Web Archive   | The internet never forgets - this is certain!                              | 92    |
+| Benefits      | "Who pays full price these days?" For sharing deals/giveaways.             | 36    |
+| Off-Topic     | Casual chat section. No politics/NSFW content allowed.                     | 11    |
+| Feedback      | Discussions about this site, its organization, operations, and improvements. | 2     |
 
 ### How to install
 

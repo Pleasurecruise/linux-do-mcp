@@ -1,6 +1,6 @@
 {
     "name": "@pleasure1234/linux-do-mcp",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "MCP server for accessing the Linux Do through API",
     "license": "MIT",
     "author": "Pleasure1234",
