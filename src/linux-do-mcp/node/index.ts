@@ -229,12 +229,12 @@ function formatCategoryTopicResponse(data: LinuxDoCategoryResponse, categoryId: 
     content: [{
       type: "text",
       text: JSON.stringify({
-        category: data.category_list.categories.find(cat => cat.id === categoryId)?.name || '未知分类',
+        category: data.category_list.categories.find(category => category.id === categoryId)?.name || '未知分类',
         topics: filteredTopics.map(topic => ({
           title: topic.title,
           created_at: topic.created_at,
           url: `https://linux.do/t/${topic.id}`,
-          poster: data.topic_list.users.find(user =>
+          poster: data.topic_list.users?.find(user =>
             user.id === topic.posters[0]?.user_id
           )?.name || '某位佬友'
         }))
@@ -302,9 +302,9 @@ async function handleFetch(params: { tool: string; params: any }) {
 
 async function handleCategory(params: { category: keyof typeof CATEGORY_MAP; page?: number; per_page?: number }) {
   const categoryId = CATEGORY_MAP[params.category];
-  const url = new URL("https://linux.do/categories.json");
+  const url = new URL("https://linux.do/categories_and_latest");
   url.searchParams.append("page", (params.page || 1).toString());
-  url.searchParams.append("per_page", (params.per_page || 10).toString());
+  url.searchParams.append("per_page", (params.per_page || 50).toString());
 
   const response = await fetch(url.toString());
   if (!response.ok) {
@@ -319,7 +319,7 @@ async function handleCategory(params: { category: keyof typeof CATEGORY_MAP; pag
 const server = new Server(
   {
     name: "pleasure1234/linux-do-mcp",
-    version: "1.0.4",
+    version: "1.0.5",
   },
   {
     capabilities: {
