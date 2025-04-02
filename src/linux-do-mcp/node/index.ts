@@ -312,7 +312,7 @@ async function handleFetch(params: { tool: string; params: any }) {
 const server = new Server(
   {
     name: "pleasure1234/linux-do-mcp",
-    version: "1.0.0",
+    version: "1.0.2",
   },
   {
     capabilities: {
