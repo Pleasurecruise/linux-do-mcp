@@ -6,13 +6,19 @@ Where possible begin!
 
 ### API list
 
+#### No authentication is required
+
+If you do not have or cannot generate a PAT (Personal Access Token), you can only use the following features:
+
 Topics with new posts: https://linux.do/latest.json
 
 The most active topics in the past year, month, week, or day: https://linux.do/top.json
 
 Recent hot topics: https://linux.do/hot.json
 
-#### Needs Authorization (Help Wanted)
+#### Authorization is required
+
+Please click [here](https://linux.do/t/topic/31549) to learn how to generate your PAT.
 
 Topics created in recent days: https://linux.do/new.json
 
@@ -40,12 +46,6 @@ Topic you posted: https://linux.do/posted.json
 | Feedback      | Discussions about this site, its organization, operations, and improvements. | 2     |
 
 ### How to install
-
-⚠️ **Attention**:
-
-Since it is temporarily unknown whether there is a user-authenticated API key, this space is reserved in advance. 
-
-When configuring environment variables, fill in any value but do not omit it.
 
 #### Node
 
@@ -75,6 +75,8 @@ To be continued
 ### Reference
 
 - [Baidu Map Mcp](https://github.com/baidu-maps/mcp)
+
+- [PAT Generate Script](https://linux.do/t/topic/31549)
 
 ### Star History
 

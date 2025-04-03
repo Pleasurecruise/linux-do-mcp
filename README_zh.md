@@ -6,13 +6,19 @@ Where possible begin!
 
 ### API List
 
+#### 不需要鉴权
+
+如果你没有或者不会生成PAT(Personal Access Token),那您只能使用下面的功能：
+
 有新帖子的话题 https://linux.do/latest.json
 
 过去一年、一个月、一周或一天中最活跃的话题 https://linux.do/top.json
 
 最近热门话题 https://linux.do/hot.json
 
-#### 需要鉴权（需要帮助）
+#### 需要鉴权
+
+点击[这里](https://linux.do/t/topic/31549)了解如何生成PAT
 
 最近几天创建的话题 https://linux.do/new.json
 
@@ -23,6 +29,7 @@ Where possible begin!
 您发过帖子的话题 https://linux.do/posted.json
 
 ### 话题列表
+
 | 版块名称     | 描述                                                                 | Id |
 |--------------|----------------------------------------------------------------------|------|
 | 开发调优     | 此版块包含开发、测试、调试、部署、优化、安全等方面的内容             | 4    |
@@ -39,12 +46,6 @@ Where possible begin!
 | 运营反馈     | 有关此站点、其组织、运作方式以及如何改进的讨论。                     | 2    |
 
 ### 如何安装
-
-⚠️ **注意**:
-
-由于暂时无法确认社区是否存在经过用户认证的API密钥，此处预先保留该字段空间。
-
-配置环境变量时，请任意填写一个值但切勿省略此项。
 
 #### Node
 
@@ -74,6 +75,8 @@ To be continued
 ### 参考项目
 
 - [Baidu Map Mcp](https://github.com/baidu-maps/mcp)
+
+- [PAT Generate Script](https://linux.do/t/topic/31549)
 
 ### Star History
 
