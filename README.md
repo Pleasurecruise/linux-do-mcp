@@ -28,6 +28,12 @@ New topics and topics you are currently following or tracking with unread posts:
 
 Topic you posted: https://linux.do/posted.json
 
+Your Notification：https://linux.do/notifications.json
+
+Your Bookmark：https://linux.do/u/${your-username}/user-menu-bookmarks
+
+Your Private Message：https://linux.do/u/${your-username}/user-menu-private-messages
+
 ### Category List
 
 | Category Name | Description                                                                 | Id |
@@ -60,6 +66,7 @@ Topic you posted: https://linux.do/posted.json
       ],
       "env": {
         "LINUX_DO_API_KEY": "your-api-key-here"
+        "LINUX_DO_USERNAME": "your-username"
       }
     }
   }

@@ -28,6 +28,12 @@ Where possible begin!
 
 您发过帖子的话题 https://linux.do/posted.json
 
+您的消息通知：https://linux.do/notifications.json
+
+您的书签：https://linux.do/u/${your-username}/user-menu-bookmarks
+
+您的私信：https://linux.do/u/${your-username}/user-menu-private-messages
+
 ### 话题列表
 
 | 版块名称     | 描述                                                                 | Id |
@@ -60,6 +66,7 @@ Where possible begin!
       ],
       "env": {
         "LINUX_DO_API_KEY": "your-api-key-here"
+        "LINUX_DO_USERNAME": "your-username"
       }
     }
   }
