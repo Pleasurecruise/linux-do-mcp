@@ -71,7 +71,7 @@ use python run [this](src/get-pat.py) file to get your API_KEY
         "@pleasure1234/linux-do-mcp"
       ],
       "env": {
-        "LINUX_DO_API_KEY": "your-api-key-here"
+        "LINUX_DO_API_KEY": "your-api-key-here",
         "LINUX_DO_USERNAME": "your-username"
       }
     }
@@ -90,7 +90,7 @@ use python run [this](src/get-pat.py) file to get your API_KEY
         "linux-do-mcp"
       ],
       "env": {
-        "LINUX_DO_API_KEY": "your-api-key-here"
+        "LINUX_DO_API_KEY": "your-api-key-here",
         "LINUX_DO_USERNAME": "your-username"
       }
     }

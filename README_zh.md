@@ -71,7 +71,7 @@ Where possible begin!
         "@pleasure1234/linux-do-mcp"
       ],
       "env": {
-        "LINUX_DO_API_KEY": "your-api-key-here"
+        "LINUX_DO_API_KEY": "your-api-key-here",
         "LINUX_DO_USERNAME": "your-username"
       }
     }
@@ -90,7 +90,7 @@ Where possible begin!
         "linux-do-mcp"
       ],
       "env": {
-        "LINUX_DO_API_KEY": "your-api-key-here"
+        "LINUX_DO_API_KEY": "your-api-key-here",
         "LINUX_DO_USERNAME": "your-username"
       }
     }
