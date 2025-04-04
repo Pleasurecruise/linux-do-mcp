@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatch"]
+build-backend = "hatchling.build"
+
+[project]
+name = "linux-do-mcp"
+version = "0.1.2"
+description = "MCP Server for Linux.do"
+readme = "README.md"
+requires-python = ">=3.12"
+keywords = ["http", "mcp", "linux.do"]
+license = { text = "MIT" }
+authors = [
+    { name = "Pleasurecruise", email = "3196812536@qq.com" }
+]
+dependencies = [
+    "asyncio>=3.4.3",
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.5.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/linux_do_mcp"]
+
+[project.scripts]
+linux-do-mcp = "linux_do_mcp:main"
+
+[project.urls]
+Homepage = "https://github.com/Pleasurecruise/linux-do-mcp"
+Repository = "https://github.com/Pleasurecruise/linux-do-mcp.git"

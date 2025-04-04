@@ -1,40 +1,44 @@
-## Linux Do MCP Server
+# Linux Do MCP Server
 
 中文 / [English](README.md)
 
+![LINUX DO](img/logo.png)
+
 Where possible begin!
 
-### API List
+## API List
 
-#### 不需要鉴权
+| 功能描述                          | API路径                                                                 |
+|-----------------------------------|------------------------------------------------------------------------|
+| **不需要鉴权**                   |                                                                        |
+| 有新帖子的话题                   | https://linux.do/latest.json                                           |
+| 过去一年、一个月、一周或一天中最活跃的话题 | https://linux.do/top.json                                              |
+| 最近热门话题                     | https://linux.do/hot.json                                              |
+| **需要鉴权**                     |                                                                        |
+| 最近几天创建的话题               | https://linux.do/new.json                                              |
+| 具有未读帖子的话题（关注或追踪） | https://linux.do/unread.json                                           |
+| 新话题和未读帖子（关注或追踪）   | https://linux.do/unseen.json                                           |
+| 您发过帖子的话题                 | https://linux.do/posted.json                                           |
+| 消息通知                         | https://linux.do/notifications.json                                    |
+| 话题搜索                         | https://linux.do/search/query.json                                    |
+| 书签                             | https://linux.do/u/${your-username}/user-menu-bookmarks                |
+| 私信                             | https://linux.do/u/${your-username}/user-menu-private-messages         |
 
-如果你没有或者不会生成PAT(Personal Access Token),那您只能使用下面的功能：
+## 工具列表
 
-有新帖子的话题 https://linux.do/latest.json
+1. 有新帖子的话题
+2. 过去一年、一个月、一周或一天中最活跃的话题
+3. 最近热门话题
+4. 最近几天创建的话题
+5. 具有未读帖子的话题（关注或追踪）
+6. 新话题和未读帖子（关注或追踪）
+7. 您发过帖子的话题
+8. 消息通知
+9. 话题搜索
+10. 您的书签
+11. 您的私信
 
-过去一年、一个月、一周或一天中最活跃的话题 https://linux.do/top.json
-
-最近热门话题 https://linux.do/hot.json
-
-#### 需要鉴权
-
-点击[这里](https://linux.do/t/topic/31549)了解如何生成PAT
-
-最近几天创建的话题 https://linux.do/new.json
-
-您当前正在关注或追踪，具有未读帖子的话题 https://linux.do/unread.json
-
-新话题和您当前正在关注或追踪，具有未读帖子的话题 https://linux.do/unseen.json
-
-您发过帖子的话题 https://linux.do/posted.json
-
-您的消息通知：https://linux.do/notifications.json
-
-您的书签：https://linux.do/u/${your-username}/user-menu-bookmarks
-
-您的私信：https://linux.do/u/${your-username}/user-menu-private-messages
-
-### 话题列表
+## 话题列表
 
 | 版块名称     | 描述                                                                 | Id |
 |--------------|----------------------------------------------------------------------|------|
@@ -51,9 +55,11 @@ Where possible begin!
 | 搞七捻三     | 闲聊吹水的板块。不得讨论政治、色情等违规内容。                       | 11   |
 | 运营反馈     | 有关此站点、其组织、运作方式以及如何改进的讨论。                     | 2    |
 
-### 如何安装
+## 如何安装
 
-#### Node
+用python运行[这个](src/get-pat.py)文件获得API_KEY
+
+### Node
 
 ```json
 {
@@ -73,18 +79,44 @@ Where possible begin!
 }
 ```
 
-#### Python
+### Python
 
 ```python
-To be continued
+{
+  "mcpServers": {
+    "linux-do": {
+      "command": "uvx",
+      "args": [
+        "-y",
+        "linux-do-mcp"
+      ],
+      "env": {
+        "LINUX_DO_API_KEY": "your-api-key-here"
+        "LINUX_DO_USERNAME": "your-username"
+      }
+    }
+  }
+}
 ```
 
-### 参考项目
+## 参考项目
 
 - [Baidu Map Mcp](https://github.com/baidu-maps/mcp)
 
+- [Discourse docs](https://docs.discourse.org)
+
 - [PAT Generate Script](https://linux.do/t/topic/31549)
 
-### Star History
+## 版权声明
+
+- Logo 和社区内容 © [Linux DO 社区](https://linux.do)
+
+- PAT 生成脚本 © [此作者](https://linux.do/t/topic/31549)
+
+- 项目代码 © [Pleasurecruise](https://github.com/Pleasurecruise)
+
+本项目基于 [MIT 许可证](LICENSE) 授权。
+
+## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Pleasurecruise/linux-do-mcp&type=Date)](https://www.star-history.com/#Pleasurecruise/linux-do-mcp&Date)

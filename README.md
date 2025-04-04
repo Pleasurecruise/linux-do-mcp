@@ -1,40 +1,44 @@
-## Linux Do MCP Server
+# Linux Do MCP Server
 
 [中文](README_zh.md) / English
 
+![LINUX DO](img/logo.png)
+
 Where possible begin!
 
-### API list
+## API List
 
-#### No authentication is required
+| Description                      | API Endpoint                                                                 |
+|----------------------------------|------------------------------------------------------------------------------|
+| **Without Authentication**       |                                                                              |
+| Topics with new posts            | https://linux.do/latest.json                                                 |
+| Most active topics (past year/month/week/day) | https://linux.do/top.json                                             |
+| Recently popular topics          | https://linux.do/hot.json                                                   |
+| **With Authentication**          |                                                                              |
+| Recently created topics          | https://linux.do/new.json                                                   |
+| Topics with unread posts (tracked/followed) | https://linux.do/unread.json                                          |
+| New topics and unread posts (tracked/followed) | https://linux.do/unseen.json                                          |
+| Topics you posted in             | https://linux.do/posted.json                                                |
+| Notifications                    | https://linux.do/notifications.json                                         |
+| Topic Search                    | https://linux.do/search/query.json                                         |
+| Bookmarks                        | https://linux.do/u/${your-username}/user-menu-bookmarks                     |
+| Private messages                 | https://linux.do/u/${your-username}/user-menu-private-messages              |
 
-If you do not have or cannot generate a PAT (Personal Access Token), you can only use the following features:
+### Tools List
 
-Topics with new posts: https://linux.do/latest.json
+1. Topics with new posts
+2. Most active topics (past year/month/week/day)
+3. Recently popular topics
+4. Recently created topics
+5. Topics with unread posts (tracked/followed)
+6. New topics and unread posts (tracked/followed)
+7. Topics you posted in
+8. Notifications
+9. Topic Search
+10. Bookmarks
+11. Private messages
 
-The most active topics in the past year, month, week, or day: https://linux.do/top.json
-
-Recent hot topics: https://linux.do/hot.json
-
-#### Authorization is required
-
-Please click [here](https://linux.do/t/topic/31549) to learn how to generate your PAT.
-
-Topics created in recent days: https://linux.do/new.json
-
-You are currently following or tracking topics with unread posts: https://linux.do/unread.json
-
-New topics and topics you are currently following or tracking with unread posts: https://linux.do/unseen.json
-
-Topic you posted: https://linux.do/posted.json
-
-Your Notification：https://linux.do/notifications.json
-
-Your Bookmark：https://linux.do/u/${your-username}/user-menu-bookmarks
-
-Your Private Message：https://linux.do/u/${your-username}/user-menu-private-messages
-
-### Category List
+## Category List
 
 | Category Name | Description                                                                 | Id |
 |---------------|-----------------------------------------------------------------------------|-------|
@@ -51,9 +55,11 @@ Your Private Message：https://linux.do/u/${your-username}/user-menu-private-mes
 | Off-Topic     | Casual chat section. No politics/NSFW content allowed.                     | 11    |
 | Feedback      | Discussions about this site, its organization, operations, and improvements. | 2     |
 
-### How to install
+## How to install
 
-#### Node
+use python run [this](src/get-pat.py) file to get your API_KEY
+
+### Node
 
 ```json
 {
@@ -73,18 +79,44 @@ Your Private Message：https://linux.do/u/${your-username}/user-menu-private-mes
 }
 ```
 
-#### Python
+### Python
 
 ```python
-To be continued
+{
+  "mcpServers": {
+    "linux-do": {
+      "command": "uvx",
+      "args": [
+        "-y",
+        "linux-do-mcp"
+      ],
+      "env": {
+        "LINUX_DO_API_KEY": "your-api-key-here"
+        "LINUX_DO_USERNAME": "your-username"
+      }
+    }
+  }
+}
 ```
 
-### Reference
+## Reference
 
 - [Baidu Map Mcp](https://github.com/baidu-maps/mcp)
 
+- [Discourse docs](https://docs.discourse.org)
+
 - [PAT Generate Script](https://linux.do/t/topic/31549)
 
-### Star History
+## Copyright
+
+- Logo and community content © [Linux DO Community](https://linux.do)
+
+- PAT generation script © [this author](https://linux.do/t/topic/31549)
+
+- Project code © [Pleasurecruise](https://github.com/Pleasurecruise)
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Pleasurecruise/linux-do-mcp&type=Date)](https://www.star-history.com/#Pleasurecruise/linux-do-mcp&Date)

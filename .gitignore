@@ -1,4 +1,9 @@
 src/linux-do-mcp/node/dist
 src/linux-do-mcp/node/node_modules
+
+src/linux-do-mcp/python/.venv/
+src/linux-do-mcp/python/dist/
+src/linux-do-mcp/python/src/linux_do_mcp/__pycache__/
+
 .vscode/
 .env

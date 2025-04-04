@@ -27,6 +27,22 @@ interface LinuxDoTopicResponse {
   };
 }
 
+interface LinuxDoSearchResponse {
+  posts: Array<{
+    id: number;
+    username: string;
+    created_at: string;
+    topic_id: number;
+    like_count: number;
+  }>;
+  topics: Array<{
+    id: number;
+    fancy_title: string;
+    created_at: string;
+    category_id: number;
+  }>;
+}
+
 interface LinuxDoCategoryResponse {
   category_list: {
     categories: Array<{
@@ -165,34 +181,6 @@ const HOT_TOPIC_TOOL: Tool = {
   }
 };
 
-const FETCH_AGAIN_TOOL: Tool = {
-  name: "fetch_again",
-  description: "重新获取指定的Linux.do话题列表",
-  inputSchema: {
-    type: "object",
-    properties: {
-      tool: {
-        type: "string",
-        enum: ["latest_topic", "newest_topic", "top_topic", "hot_topic"],
-        description: "要重新调用的工具名称"
-      },
-      params: {
-        type: "object",
-        description: "工具的原始参数",
-        properties: {
-          page: { type: "number" },
-          per_page: { type: "number" },
-          period: {
-            type: "string",
-            enum: ["daily", "weekly", "monthly", "quarterly", "yearly", "all"],
-          }
-        }
-      }
-    },
-    required: ["tool", "params"]
-  }
-};
-
 const CATEGORY_TOPIC_TOOL: Tool = {
   name: "category_topic",
   description: "获取Linux.do特定分类下的话题",
@@ -291,6 +279,21 @@ const POST_TOPIC_TOOL: Tool = {
   }
 };
 
+const TOPIC_SEARCH_TOOL: Tool = {
+  name: "topic_search",
+  description: "搜索Linux.do论坛上的话题",
+  inputSchema: {
+    type: "object",
+    properties: {
+      term: {
+        type: "string",
+        description: "搜索关键词"
+      },
+    },
+    required: ["term"]
+  }
+};
+
 const NEW_NOTIFICATION_TOOL: Tool = {
   name: "new_notification",
   description: "获取Linux.do您最近的未读通知",
@@ -337,6 +340,7 @@ const MY_PRIVATE_MESSAGE_TOOL: Tool = {
   }
 };
 
+// Some Maps for category and notification types
 const CATEGORY_MAP = {
   "Feedback": 2,
   "Development": 4,
@@ -409,7 +413,6 @@ const LINUX_DO_TOPIC_TOOLS = [
   LATEST_TOPIC_TOOL,
   TOP_TOPIC_TOOL,
   HOT_TOPIC_TOOL,
-  FETCH_AGAIN_TOOL,
   CATEGORY_TOPIC_TOOL,
   NEW_TOPIC_TOOL,
   UNREAD_TOPIC_TOOL,
@@ -419,6 +422,7 @@ const LINUX_DO_TOPIC_TOOLS = [
 
 const LINUX_DO_PERSONAL_TOOLS = [
   NEW_NOTIFICATION_TOOL,
+  TOPIC_SEARCH_TOOL,
   MY_BOOKMARK_TOOL,
   MY_PRIVATE_MESSAGE_TOOL,
 ]
@@ -436,6 +440,28 @@ function formatTopicResponse(data: LinuxDoTopicResponse) {
           poster: data.users.find(user =>
             user.id === topic.posters[0]?.user_id
           )?.username || '某位佬友'
+        }))
+      }, null, 2)
+    }],
+    isError: false
+  };
+}
+
+function formatSearchResponse(data: LinuxDoSearchResponse) {
+  return {
+    content: [{
+      type: "text",
+      text: JSON.stringify({
+        topics: data.topics.map(topic => ({
+          title: topic.fancy_title,
+          created_at: topic.created_at,
+          url: `https://linux.do/t/${topic.id}`,
+        })),
+        posts: data.posts.map(post => ({
+          username: post.username,
+          created_at: post.created_at,
+          like_count: post.like_count,
+          url: `https://linux.do/t/${post.topic_id}`
         }))
       }, null, 2)
     }],
@@ -623,6 +649,15 @@ async function handleCategory(params: { category: keyof typeof CATEGORY_MAP; pag
   return formatCategoryTopicResponse(data, categoryId);
 }
 
+async function handleSearch(params: { term: string }) {
+  const apiParams = {
+    term: params.term,
+  };
+  
+  const data = await fetchLinuxDoApi('search/query.json', apiParams) as LinuxDoSearchResponse;
+  return formatSearchResponse(data);
+}
+
 async function handleNotification(params: { limit?: number; read?: boolean; filter_by_types?: string[] }) {
   const apiParams: Record<string, any> = {
     limit: params.limit || 10,
@@ -653,25 +688,11 @@ async function handlePrivateMessage() {
   return formatPrivateMessageResponse(data);
 }
 
-// Add the missing fetch tool handler that uses the generic version
-async function handleFetch(params: { tool: string; params: any }) {
-  switch (params.tool) {
-    case "latest_topic":
-      return handleLatest(params.params);
-    case "top_topic":
-      return handleTop(params.params);
-    case "hot_topic":
-      return handleHot(params.params);
-    default:
-      throw new Error(`Unknown tool: ${params.tool}`);
-  }
-}
-
 // Server setup
 const server = new Server(
   {
     name: "pleasure1234/linux-do-mcp",
-    version: "1.0.7",
+    version: "1.0.8",
   },
   {
     capabilities: {
@@ -711,14 +732,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           per_page?: number;
         };
         return await handleHot({ page, per_page });
-      }
-
-      case "fetch_again": {
-        const { tool, params } = request.params.arguments as {
-          tool: string;
-          params: any;
-        };
-        return await handleFetch({ tool, params });
       }
 
       case "category_topic": {
@@ -771,6 +784,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return await handleNotification({ limit, read, filter_by_types });
       }
       
+      case "topic_search": {
+        const { term } = request.params.arguments as {
+          term: string;
+        };
+        return await handleSearch({ term });
+      }
+
       case "my_bookmark": {
         return await handleBookmark();
       }
