@@ -2,7 +2,7 @@
 
 [中文](README_zh.md) / English
 
-![LINUX DO](img/logo.png)
+<img src="img/logo.png" width="200" />
 
 Where possible begin!
 
@@ -87,7 +87,6 @@ use python run [this](src/get-pat.py) file to get your API_KEY
     "linux-do": {
       "command": "uvx",
       "args": [
-        "-y",
         "linux-do-mcp"
       ],
       "env": {

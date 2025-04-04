@@ -2,7 +2,7 @@
 
 中文 / [English](README.md)
 
-![LINUX DO](img/logo.png)
+<img src="img/logo.png" width="200" />
 
 Where possible begin!
 
@@ -87,7 +87,6 @@ Where possible begin!
     "linux-do": {
       "command": "uvx",
       "args": [
-        "-y",
         "linux-do-mcp"
       ],
       "env": {
