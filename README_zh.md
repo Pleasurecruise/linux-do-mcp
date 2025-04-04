@@ -2,7 +2,7 @@
 
 中文 / [English](README.md)
 
-<img src="img/logo.png" width="200" />
+<img src="https://avatars.githubusercontent.com/u/160804563?s=200&v=4"/>
 
 Where possible begin!
 
