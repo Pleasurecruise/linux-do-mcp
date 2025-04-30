@@ -98,7 +98,10 @@ def test_user_api_key(site_url_base: str, key: str) -> None:
     # Get the current session information from the Discourse site.
     r = requests.get(
         f'https://linux.do/new.json',
-        headers={'User-Api-Key': key},
+        headers={
+            'User-Api-Key': key,
+            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            },
         timeout=5,
     )
     # Expect some results.

@@ -225,6 +225,23 @@ def create_error_response(error_message: str) -> Dict:
         "error": error_message
     }
 
+# Validate authentication credentials
+async def validate_auth() -> bool:
+    """Validates the Linux.do API key and username"""
+    try:
+        url = f"https://linux.do/u/{username}.json"
+        headers = {
+            "User-Api-Key": api_key,
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.get(url, headers=headers)
+            return response.status_code == 200
+    except Exception as e:
+        print(f"Error validating authentication: {str(e)}")
+        return False
+
 # API request helper function
 async def fetch_linux_do_api(endpoint: str, params: Dict = None, requires_auth: bool = False) -> Dict:
     """Helper function to fetch data from Linux.do API"""
@@ -233,9 +250,16 @@ async def fetch_linux_do_api(endpoint: str, params: Dict = None, requires_auth: 
             params = {}
 
         url = f"https://linux.do/{endpoint}"
-
-        headers = {}
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+        
         if requires_auth:
+            # Validate authentication before proceeding with authenticated requests
+            is_auth_valid = await validate_auth()
+            if not is_auth_valid:
+                raise Exception("Authentication failed: Invalid API key or username. Please check your LINUX_DO_API_KEY and LINUX_DO_USERNAME environment variables.")
+            
             headers["User-Api-Key"] = api_key
 
         async with httpx.AsyncClient() as client:

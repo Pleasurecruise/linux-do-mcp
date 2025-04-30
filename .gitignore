@@ -5,5 +5,9 @@ src/linux-do-mcp/python/.venv/
 src/linux-do-mcp/python/dist/
 src/linux-do-mcp/python/src/linux_do_mcp/__pycache__/
 
+src/linux-do-mcp/node-sse/node_modules
+
+src/linux_do_mcp/python-sse/.venv/
+
 .vscode/
 .env

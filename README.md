@@ -14,6 +14,7 @@ Where possible begin!
 | Topics with new posts            | https://linux.do/latest.json                                                 |
 | Most active topics (past year/month/week/day) | https://linux.do/top.json                                             |
 | Recently popular topics          | https://linux.do/hot.json                                                   |
+| Latest classified topics         | https://linux.do/categories_and_latest                                              |
 | **With Authentication**          |                                                                              |
 | Recently created topics          | https://linux.do/new.json                                                   |
 | Topics with unread posts (tracked/followed) | https://linux.do/unread.json                                          |
@@ -29,14 +30,15 @@ Where possible begin!
 1. Topics with new posts
 2. Most active topics (past year/month/week/day)
 3. Recently popular topics
-4. Recently created topics
-5. Topics with unread posts (tracked/followed)
-6. New topics and unread posts (tracked/followed)
-7. Topics you posted in
-8. Notifications
-9. Topic Search
-10. Bookmarks
-11. Private messages
+4. Latest classified topics 
+5. Recently created topics
+6. Topics with unread posts (tracked/followed)
+7. New topics and unread posts (tracked/followed)
+8. Topics you posted in
+9. Notifications
+10. Topic Search
+11. Bookmarks
+12. Private messages
 
 ## Category List
 
@@ -64,7 +66,7 @@ use python run [this](src/get-pat.py) file to get your API_KEY
 ```json
 {
   "mcpServers": {
-    "linux-do": {
+    "linux-do-mcp": {
       "command": "npx",
       "args": [
         "-y",
@@ -84,7 +86,7 @@ use python run [this](src/get-pat.py) file to get your API_KEY
 ```python
 {
   "mcpServers": {
-    "linux-do": {
+    "linux-do-mcp": {
       "command": "uvx",
       "args": [
         "linux-do-mcp"

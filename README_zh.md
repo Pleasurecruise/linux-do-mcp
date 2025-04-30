@@ -14,6 +14,7 @@ Where possible begin!
 | 有新帖子的话题                   | https://linux.do/latest.json                                           |
 | 过去一年、一个月、一周或一天中最活跃的话题 | https://linux.do/top.json                                              |
 | 最近热门话题                     | https://linux.do/hot.json                                              |
+| 最新分类话题                     | https://linux.do/categories_and_latest                                              |
 | **需要鉴权**                     |                                                                        |
 | 最近几天创建的话题               | https://linux.do/new.json                                              |
 | 具有未读帖子的话题（关注或追踪） | https://linux.do/unread.json                                           |
@@ -29,14 +30,15 @@ Where possible begin!
 1. 有新帖子的话题
 2. 过去一年、一个月、一周或一天中最活跃的话题
 3. 最近热门话题
-4. 最近几天创建的话题
-5. 具有未读帖子的话题（关注或追踪）
-6. 新话题和未读帖子（关注或追踪）
-7. 您发过帖子的话题
-8. 消息通知
-9. 话题搜索
-10. 您的书签
-11. 您的私信
+4. 最新分类话题
+5. 最近几天创建的话题
+6. 具有未读帖子的话题（关注或追踪）
+7. 新话题和未读帖子（关注或追踪）
+8. 您发过帖子的话题
+9. 消息通知
+10. 话题搜索
+11. 您的书签
+12. 您的私信
 
 ## 话题列表
 
@@ -64,7 +66,7 @@ Where possible begin!
 ```json
 {
   "mcpServers": {
-    "linux-do": {
+    "linux-do-mcp": {
       "command": "npx",
       "args": [
         "-y",
@@ -84,7 +86,7 @@ Where possible begin!
 ```python
 {
   "mcpServers": {
-    "linux-do": {
+    "linux-do-mcp": {
       "command": "uvx",
       "args": [
         "linux-do-mcp"

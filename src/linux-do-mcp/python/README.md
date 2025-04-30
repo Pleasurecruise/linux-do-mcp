@@ -18,3 +18,10 @@ run the following command to test in dev env
 ```
 mcp dev src/linux_do_mcp/main.py
 ```
+
+run the following command to pack the package
+
+```
+uv run -- hatchling build
+uv run -- twine upload dist/*
+```

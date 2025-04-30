@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@types/node": "^22.14.0",
+    "@types/node-fetch": "^2.6.12",
+    "axios": "^1.8.4",
+    "fastmcp": "^1.21.0",
+    "node-fetch": "^3.3.2",
+    "open": "^10.1.0"
+  }
+}

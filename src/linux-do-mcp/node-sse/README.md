@@ -1,0 +1,6 @@
+在三个包中都添加token有效性检验函数
+对于需要提权的接口先检验如果无效则不请求
+
+将node-sse部署到CF远程
+npx wrangler@latest deploy
+在cherry-studio使用sse连接

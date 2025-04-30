@@ -569,6 +569,23 @@ function formatPrivateMessageResponse(data: any) {
   };
 }
 
+// Function to validate authentication credentials
+async function validateAuth(): Promise<boolean> {
+  try {
+    const url = new URL(`https://linux.do/u/${LINUX_DO_USERNAME}.json`);
+    const response = await fetch(url.toString(), {
+      headers: {
+        "User-Api-Key": LINUX_DO_API_KEY,
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+      }
+    });
+    return response.status === 200;
+  } catch (error) {
+    console.error("Error validating authentication:", error);
+    return false;
+  }
+}
+
 // Common fetch function to reduce duplication
 async function fetchLinuxDoApi(endpoint: string, params: Record<string, any> = {}, requiresAuth: boolean = false): Promise<any> {
   const url = new URL(`https://linux.do/${endpoint}`);
@@ -582,13 +599,23 @@ async function fetchLinuxDoApi(endpoint: string, params: Record<string, any> = {
   
   const options: {
     headers?: Record<string, string>;
-  } = {};
+  } = {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+  };
+  
   if (requiresAuth) {
+    // Validate authentication before proceeding with authenticated requests
+    const isAuthValid = await validateAuth();
+    if (!isAuthValid) {
+      throw new Error("Authentication failed: Invalid API key or username. Please check your LINUX_DO_API_KEY and LINUX_DO_USERNAME environment variables.");
+    }
+    
     options.headers = {
       "User-Api-Key": LINUX_DO_API_KEY,
     };
   }
-  
   const response = await fetch(url.toString(), options);
   if (!response.ok) {
     throw new Error(`Error fetching from ${endpoint}: ${response.statusText}`);
@@ -692,7 +719,7 @@ async function handlePrivateMessage() {
 const server = new Server(
   {
     name: "pleasure1234/linux-do-mcp",
-    version: "1.0.8",
+    version: "1.0.9",
   },
   {
     capabilities: {

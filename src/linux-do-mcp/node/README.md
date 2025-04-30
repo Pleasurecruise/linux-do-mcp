@@ -11,3 +11,11 @@ cd to `src/linux-do-mcp/node`, and run the following command to test in dev env
 ```
 npx @modelcontextprotocol/inspector node dist/index.js
 ```
+
+run the following command to pack the package
+
+```
+npm run build
+npm login // need to log in on https://registry.npmjs.org/
+npm publish --access public
+```
