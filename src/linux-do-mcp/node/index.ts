@@ -576,7 +576,11 @@ async function validateAuth(): Promise<boolean> {
     const response = await fetch(url.toString(), {
       headers: {
         "User-Api-Key": LINUX_DO_API_KEY,
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Referer": "https://linux.do",
+        "Content-Type": "application/json"
       }
     });
     return response.status === 200;
@@ -601,7 +605,11 @@ async function fetchLinuxDoApi(endpoint: string, params: Record<string, any> = {
     headers?: Record<string, string>;
   } = {
     headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+      "Accept-Language": "en-US,en;q=0.5",
+      "Referer": "https://linux.do",
+      "Content-Type": "application/json"
     }
   };
   
@@ -719,7 +727,7 @@ async function handlePrivateMessage() {
 const server = new Server(
   {
     name: "pleasure1234/linux-do-mcp",
-    version: "1.0.9",
+    version: "1.0.10",
   },
   {
     capabilities: {

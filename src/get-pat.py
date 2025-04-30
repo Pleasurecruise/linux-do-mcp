@@ -100,8 +100,12 @@ def test_user_api_key(site_url_base: str, key: str) -> None:
         f'https://linux.do/new.json',
         headers={
             'User-Api-Key': key,
-            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            },
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Referer": "https://linux.do",
+            "Content-Type": "application/json"
+        },
         timeout=5,
     )
     # Expect some results.
