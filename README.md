@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/pleasurecruise-linux-do-mcp-badge.png)](https://mseep.ai/app/pleasurecruise-linux-do-mcp)
+
 # Linux Do MCP Server
 
 [中文](README_zh.md) / English
